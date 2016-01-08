@@ -2,10 +2,12 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	</head>
-	<body>
+	<body style='font-family: "Helvetica Neue"'>
 		<div class='imageHolder' style='height:100%;width:100%;background-size:cover'>
-		<input type='text' id='image1'>
-		<input type='text' id='image2'>
+		<label for="image1">Image 1 URL</label>
+		<input type='text' id='image1' value="https://upload.wikimedia.org/wikipedia/commons/6/6f/Beethoven.jpg">
+		<label for="image2">Image 2 URL</label>
+		<input type='text' id='image2' value="https://s-media-cache-ak0.pinimg.com/736x/79/b8/30/79b830cf57b1797a5201047c04af8ec4.jpg">
 			<div class = 'buttons'>
 				<button class = 'but' id='none'>none</button>
 				<button class = 'but' id='multiply'>multiply</button>
@@ -26,16 +28,15 @@
 			</div>
 		</div>
 		<script>
+			$(document).ready(function() {
+				$('.imageHolder').css('background-blend-mode', 'hard-light');
+				updateBG($('#image1').val(),$('#image2').val());
+			})
 			$('#image1').on('input', function() {
-				var image1 = $('#image1').val();
-				var image2 = $('#image2').val();
-				updateBG(image1,image2);
-
+				updateBG($('#image1').val(),$('#image2').val());
 			});
 			$('#image2').on('input', function() {
-				var image1 = $('#image1').val();
-				var image2 = $('#image2').val();
-				updateBG(image1,image2);
+				updateBG($('#image1').val(),$('#image2').val());
 			});
 			$('.but').click(function(){
 				var blend = $(this).attr('id');
