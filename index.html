@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class='imageHolder' style='height:100%;width:100%;background-size:cover'>
+		<input type='text' id='image1'>
+		<input type='text' id='image2'>
+			<div class = 'buttons'>
+				<button class = 'but' id='none'>none</button>
+				<button class = 'but' id='multiply'>multiply</button>
+				<button class = 'but' id='screen'>screen</button>
+				<button class = 'but' id='overlay'>overlay</button>
+				<button class = 'but' id='darken'>darken</button>
+				<button class = 'but' id='lighten'>lighten</button>
+				<button class = 'but' id='color-dodge'>color-dodge</button>
+				<button class = 'but' id='color-burn'>color-burn</button>
+				<button class = 'but' id='hard-light'>hard-light</button>
+				<button class = 'but' id='soft-light'>soft-light</button>
+				<button class = 'but' id='difference'>difference</button>
+				<button class = 'but' id='exclusion'>exclusion</button>
+				<button class = 'but' id='hue'>hue</button>
+				<button class = 'but' id='saturation'>saturation</button>
+				<button class = 'but' id='color'>color</button>
+				<button class = 'but' id='luminosity'>luminosity</button>
+			</div>
+		</div>
+		<script>
+			$('#image1').on('input', function() {
+				var image1 = $('#image1').val();
+				var image2 = $('#image2').val();
+				updateBG(image1,image2);
+
+			});
+			$('#image2').on('input', function() {
+				var image1 = $('#image1').val();
+				var image2 = $('#image2').val();
+				updateBG(image1,image2);
+			});
+			$('.but').click(function(){
+				var blend = $(this).attr('id');
+				$('.imageHolder').css('background-blend-mode', blend);
+			})
+
+			function updateBG(image1,image2){
+				var thisUrl = 'url("' + image1 + '"), url("'+image2+'")';
+				console.log(thisUrl);
+				$('.imageHolder').css('background-image', thisUrl);
+			}
+		</script>
+	</body>
